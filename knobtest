@@ -1,0 +1,42 @@
+<!Doctype html>
+
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Webmoog</title>
+	<script src="controls/js/platform.js"></script>
+	<link rel="import" href="controls/webcomponents/polymer.html">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="import" href="controls/webcomponents/controls.html" >
+	</head>
+	<body>
+		
+			<script>
+
+	var container = document.createElement( "div" );
+	container.className = "knobContainer";
+	container.style.left = "100px";
+	container.style.top = "100px";
+	container.style.width="100px";
+	container.style.height="100px";
+
+
+	document.createElement( "webaudio-knob" );
+	knob.id = "osc2detune";
+	knob.setAttribute( "value", "" + currentOsc2Detune );
+	knob.setAttribute( "src", "controls/img/MiniMoogFrequency.png" );
+	knob.setAttribute( "min", "-1200" );
+	knob.setAttribute( "max", "+1200");
+	knob.setAttribute("units", "Cent");
+	knob.setAttribute( "diameter", "45" );
+	knob.setAttribute( "sprites", "30" );
+	knob.ready();
+	knob.onchange = updateOsc2Detune;
+
+	container.appendChild( knob );
+
+			</script>
+
+
+</html>
+

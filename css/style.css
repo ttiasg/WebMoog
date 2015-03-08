@@ -1,0 +1,360 @@
+body {
+
+	background-color: #BCBCBC;
+	margin-top: 50px;
+	font-family: Tahoma;
+	font-size:14px;
+	color:#FFF;
+	font-variant: small-caps;
+}
+
+a {
+
+text-decoration: none;
+color: #FFF;
+
+}
+
+#synthbox {
+	border: 3px solid #58637A;
+	width:1100px;
+	height:320px;
+	border-radius: 10px;
+	background-color: #393E46
+}
+
+
+#mainbox {
+
+	margin:0px auto;
+	width:1150px;
+	height:800px;
+}
+
+#controllers{
+	float: left;
+	width:180px;
+	height:320px;
+	border-right: 2px solid #FFF;
+}
+
+#oscillatorbank{
+	padding-top: 5px;
+	float: left;
+	width:250px;
+	height:320px;
+	border-right: 2px solid #FFF;
+}
+
+#mixer{
+	padding-top:5px;
+	float: left;
+	width:250px;
+	height:320px;
+	border-right: 2px solid #FFF;
+}
+
+#filtermodwrapper{
+
+	float: left;
+	width:250px;
+	height:320px;
+	border-right: 2px solid #FFF;
+	font-size: 12px;
+}
+
+#filter {
+
+	width:250px;
+	height:170px;
+	border-bottom: 2px solid #FFF;
+}
+
+#mod {
+
+	width:250px;
+	height:130px;
+}
+
+#mod_top {
+
+	width:250px;
+	height:105px;
+
+}
+
+#output {
+
+	float:left;
+}
+
+.t_controllers {
+
+	padding-left:2px;
+	width:180px;
+	height:300px;
+	border:none;
+}
+
+.t_mod {
+
+	padding-left:2px;
+	width:250px;
+	height:150px;
+	border:none;
+
+}
+
+.t_oscillatorbank {
+	border:none;
+	width:250px;
+	text-align: center;
+
+}
+
+.t_mixer {
+
+	padding-left:2px;
+	width:250px;
+	height:300px;
+	border:none;
+
+	}
+
+.t_output {
+
+	padding-left:2px;
+	width:150px;
+	height:300px;
+	border:none;
+}
+
+tr.head td{
+
+	padding-bottom: 10px;
+}
+
+td {
+ align:center;
+
+}
+
+select {
+
+	font-size: 12px;
+	background-color:  #393E46; 
+	color:#FFF;
+}
+
+#keyboardwrapper {
+	float:left;
+}
+
+#oscillatorbank_img {
+
+	height:34px;
+	width:250px;
+	margin-left: 5px;
+
+}
+
+
+
+#img_mod {
+
+	height:34px;
+	width:250px;
+
+}
+
+#mixer_img {
+
+	height:34px;
+	width:250px;
+	margin-left: 5px;
+
+}
+
+#img_output{
+
+	height:34px;
+	margin-left: 8px;
+
+
+}
+
+
+
+#oscillatorbank_top {
+
+height:273px;
+
+}
+
+#mixer_top {
+
+height:273px;
+
+}
+
+#output_top {
+
+height:262px;
+
+}
+
+
+#osc1mix {
+
+	margin-left: 5px;
+	margin-top: 30px;
+	width:80px;
+}
+
+#osc2mix {
+
+	margin-left: 5px;
+	margin-top: 23px;
+}
+
+#osc3mix {
+	width:80px;
+	margin-left: 5px;
+	margin-top: 18px;
+}
+
+#noisevolume {
+	margin-top: 140px;
+	width:80px;
+}
+
+#column1{
+	float:left;
+	height:250px;
+	width:70px;
+
+}
+
+#column2{
+	float:left;
+	height:250px;
+	width:90px;
+	margin-left: 50px;
+}
+
+#hl_volume {
+
+margin-top:3px;
+margin-left:15px;
+font-weight: bold;
+
+}
+
+#volume {
+
+	text-align: center;
+	margin-top:15px;
+	margin-left:10px;
+	width:50px;
+}
+
+#controllers_top {
+
+	height:209px;
+}
+
+#controllers_img {
+	height:34px;
+	width:250px;
+	margin-left: 5px;
+
+}
+
+#firstrow {
+	margin-top: 70px;
+	height:80px;
+	width: 175px;
+}
+
+#secondrow {
+	margin-top: 1px;
+	height:80px;
+	width: 175px;
+}
+
+#tune {
+	text-align: center;
+	margin-left: 60px;
+	width:50px;
+	height:60px;
+}
+
+
+#glide {
+	float:left;
+	text-align: center;
+	margin-left: 18px;
+	width:63px;
+	height:60px;
+}
+
+#glide {
+	float:left;
+	text-align: center;
+	margin-left: 15px;
+	width:63px;
+	height:60px;
+}
+
+#modmix {
+	float:left;
+	text-align: center;
+	margin-left: 20px;
+	width:63px;
+	height:60px;
+}
+
+#addcontent {
+margin:180px auto;
+width:800px;
+height:200px;
+border: 3px solid #58637A;
+border-radius: 10px;
+background-color: #393E46
+}
+
+#recordingslist {
+list-style-type: none;
+display:inline;
+width:300px;
+}
+
+#recording {
+
+	float:left;
+	width:300px;
+	padding:10px;
+	height:180px;
+	border-right: 2px solid #FFF;
+}
+
+.play {
+
+	font-size:20px;
+
+}
+
+#metronom{
+padding:10px;
+float:left;
+width:240px;
+height:180px;
+border-right: 2px solid #FFF;
+}
+
+#midi {
+
+float:left;
+	padding:10px;
+	height:180px;
+}
