@@ -1,5 +1,4 @@
 <!Doctype html>
-
 <html>
 
 <head>
@@ -9,214 +8,179 @@
     <link rel="import" href="controls/webcomponents/polymer.html">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="import" href="controls/webcomponents/controls.html">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io();
+    </script>
 </head>
 
 <body>
     <div id="wrapper">
         <div id="mainbox">
             <div id="synthbox">
-            <div id="controllers">    
-                			<div id="controllers_top">
-                			<div id="firstrow">
-                					<div id="tune">
-                					Tune
-                					<webaudio-knob id="knob_tune" src="controls/img/webmoog_tune.png" sprites="30" min="-300" max="300" diameter="50" value="0" unit="cents"></webaudio-knob>
-                					</div>
-                			</div>
-                				<div id="secondrow">
-                					<div id="glide">
-                					Glide
-                					<webaudio-knob id="knob_glide" src="controls/img/moogvolume.png" sprites="9" min="0" max="100" diameter="65" value="50"></webaudio-knob>
-                					</div>
-                					<div id="modmix">
-                					Mod. Mix
-                					<webaudio-knob id="knob_modmix" src="controls/img/moogvolume.png" sprites="9" min="0" max="100" diameter="65" value="50"></webaudio-knob>
-                					</div>
-                			</div>			 
-                			</div>
-                           <div id="controllers_img"><img src="img/controllers.png" /></div>
-         
-            </div>
-            <div id="oscillatorbank">
-                <div id="oscillatorbank_top">
-                    <table class="t_oscillatorbank">
-                        <tr class="head" align="center">
-                            <td><strong>Range</strong>
-                            </td>
-                            <td><strong>Detune</strong>
-                            </td>
-                            <td><strong>Waveform</strong>
-                            </td>
-                        </tr>
-                        <tr align="center">
-                            <td></td>
-                            <td>Oscillator - 1</td>
-                            <td></td>
-                        </tr>
-                        <tr align="center">
-                            <td>
-                                <select id="range1" onclick="setRange1();">
-                                    <option>32</option>
-                                    <option>16</option>
-                                    <option>8</option>
-                                    <option>4</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                            <td>
-                                <webaudio-knob id="osc1detune" src="controls/img/MiniMoogFrequency.png" sprites="30" min="-1200" max="1200" diameter="50" units="Cents"></webaudio-knob>
-                            </td>
-
-                            <td>
-                                <select id="osc1" onclick="setOsc1();">
-                                    <option>Sine</option>
-                                    <option>Square</option>
-                                    <option>Sawtooth</option>
-                                    <option>Triangle</option>
-                                </select>
-                            </td>
-
-
-                        </tr>
-
-                        <tr align="center">
-                            <td></td>
-                            <td>Oscillator - 2</td>
-                            <td></td>
-                        </tr>
-                        <tr align="center">
-                            <td>
-                                <select id="range2" onclick="setRange2();">
-                                    <option>32</option>
-                                    <option>16</option>
-                                    <option>8</option>
-                                    <option>4</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                            <td>
-                                <webaudio-knob id="osc2detune" src="controls/img/MiniMoogFrequency.png" sprites="30" min="-1200" max="1200" diameter="50" units="Cents"></webaudio-knob>
-                            </td>
-
-                            <td>
-                                <select id="osc2" onclick="setOsc2();">
-                                    <option>Sine</option>
-                                    <option>Square</option>
-                                    <option>Sawtooth</option>
-                                    <option>Triangle</option>
-                                </select>
-                            </td>
-
-
-                        </tr>
-
-
-                        <tr align="center">
-                            <td></td>
-                            <td>Oscillator - 3</td>
-                            <td></td>
-                        </tr>
-                        <tr align="center">
-                            <td>
-                                <select id="range3" onclick="setRange3();">
-                                    <option>32</option>
-                                    <option>16</option>
-                                    <option>8</option>
-                                    <option>4</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                            <td>
-                                <webaudio-knob id="osc3detune" src="controls/img/MiniMoogFrequency.png" sprites="30" min="-1200" max="1200" diameter="50" units="Cents"></webaudio-knob>
-                            </td>
-
-                            <td>
-                                <select id="osc3" onclick="setOsc3();">
-                                    <option>Sine</option>
-                                    <option>Square</option>
-                                    <option>Sawtooth</option>
-                                    <option>Triangle</option>
-                                </select>
-                            </td>
-
-
-                        </tr>
-                    </table>
-                </div>
-                <div id="oscillatorbank_img"><img src="img/oscillatorbank.png" />
-                </div>
-            </div>
-            <div id="mixer">
-                <div id="mixer_top">
-                    <div id="column1">
-                        <div id="hl_volume">Volume</div>
-                        <div id="osc1mix">
-                            <webaudio-knob id="knob_osc1mix" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="55"></webaudio-knob>
+                <div id="controllers">
+                    <div id="controllers_top">
+                        <div id="firstrow">
+                            <div id="tune">
+                                Tune
+                                <webaudio-knob id="knob_tune" src="controls/img/webmoog_tune.png" sprites="30" min="-300" max="300" diameter="50" value="0" unit="cents"></webaudio-knob>
+                            </div>
                         </div>
-                        <div id="osc2mix">
-                            <webaudio-knob id="knob_osc2mix" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="55"></webaudio-knob>
-                        </div>
-                        <div id="osc3mix">
-                            <webaudio-knob id="knob_osc3mix" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="55"></webaudio-knob>
+                        <div id="secondrow">
+                            <div id="glide">
+                                Glide
+                                <webaudio-knob id="knob_glide" src="controls/img/moogvolume.png" sprites="9" min="0" max="100" diameter="65" value="50"></webaudio-knob>
+                            </div>
+                            <div id="modmix">
+                                Mod. Mix
+                                <webaudio-knob id="knob_modmix" src="controls/img/moogvolume.png" sprites="9" min="0" max="100" diameter="65" value="50"></webaudio-knob>
+                            </div>
                         </div>
                     </div>
-                    <div id="column2">
-                        <div id="noisevolume">
-                            Noise Volume
-                            <webaudio-knob id="knob_noiseVolume" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="50"></webaudio-knob>
-                        </div>
-                    </div>
+                    <div id="controllers_img"><img src="img/controllers.png" /></div>
                 </div>
-                <div id="mixer_img"><img src="img/mixer.png" />
-                </div>
-            </div>
-
-            <div id="filtermodwrapper">
-                <div id="filter">
-                    <table width="250px" cellpadding="1px" cellspacing="0px">
-                        <tr align="center">
-                            <td colspan="3"><strong>Filter</strong>
-                            </td>
-                        </tr>
-                        <tr align="center">
-                            <td>Cutoff Frequency</td>
-                            <td>Emphasis</td>
-                            <td>Amount of Contour</td>
-                        </tr>
-                        <tr align="center">
-                            <td>
-                                <webaudio-knob id="knob_cutoff" src="controls/img/webmoog_freq.png" sprites="30" min="20" max="20000" diameter="50" units="Hz"></webaudio-knob>
-                            </td>
-                            <td>
-                                <webaudio-knob id="knob_emphasis" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="10" diameter="50"></webaudio-knob>
-                            </td>
-                            <td>
-                                <webaudio-knob id="knob_contour" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="50" units="%"></webaudio-knob>
-                            </td>
-                        </tr>
-                        <tr align="center">
-                            <td>Attack Time</td>
-                            <td>Decay Time</td>
-                            <td>Sustain Level</td>
-                        </tr>
-                        <tr align="center">
-                            <td>
-                                <webaudio-knob id="knob_fattack" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50"></webaudio-knob>
-                            </td>
-                            <td>
-                                <webaudio-knob id="knob_fdecay" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50"></webaudio-knob>
-                            </td>
-                            <td>
-                                <webaudio-knob id="knob_fsustain" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="10" diameter="50"></webaudio-knob>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="mod">
-                    <div id="mod_top">
-                        <table width="250px">
+                <div id="oscillatorbank">
+                    <div id="oscillatorbank_top">
+                        <table class="t_oscillatorbank">
+                            <tr class="head" align="center">
+                                <td><strong>Range</strong>
+                                </td>
+                                <td><strong>Detune</strong>
+                                </td>
+                                <td><strong>Waveform</strong>
+                                </td>
+                            </tr>
                             <tr align="center">
-                                <td colspan="3"><strong>Loudness Countour</strong>
+                                <td></td>
+                                <td>Oscillator - 1</td>
+                                <td></td>
+                            </tr>
+                            <tr align="center">
+                                <td>
+                                    <select id="range1" onclick="setRange1();">
+                                        <option>32</option>
+                                        <option>16</option>
+                                        <option>8</option>
+                                        <option>4</option>
+                                        <option>2</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <webaudio-knob id="osc1detune" src="controls/img/MiniMoogFrequency.png" sprites="30" min="-1200" max="1200" diameter="50" units="Cents"></webaudio-knob>
+                                </td>
+                                <td>
+                                    <select id="osc1" onclick="setOsc1();">
+                                        <option>Sine</option>
+                                        <option>Square</option>
+                                        <option>Sawtooth</option>
+                                        <option>Triangle</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td></td>
+                                <td>Oscillator - 2</td>
+                                <td></td>
+                            </tr>
+                            <tr align="center">
+                                <td>
+                                    <select id="range2" onclick="setRange2();">
+                                        <option>32</option>
+                                        <option>16</option>
+                                        <option>8</option>
+                                        <option>4</option>
+                                        <option>2</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <webaudio-knob id="osc2detune" src="controls/img/MiniMoogFrequency.png" sprites="30" min="-1200" max="1200" diameter="50" units="Cents"></webaudio-knob>
+                                </td>
+                                <td>
+                                    <select id="osc2" onclick="setOsc2();">
+                                        <option>Sine</option>
+                                        <option>Square</option>
+                                        <option>Sawtooth</option>
+                                        <option>Triangle</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td></td>
+                                <td>Oscillator - 3</td>
+                                <td></td>
+                            </tr>
+                            <tr align="center">
+                                <td>
+                                    <select id="range3" onclick="setRange3();">
+                                        <option>32</option>
+                                        <option>16</option>
+                                        <option>8</option>
+                                        <option>4</option>
+                                        <option>2</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <webaudio-knob id="osc3detune" src="controls/img/MiniMoogFrequency.png" sprites="30" min="-1200" max="1200" diameter="50" units="Cents"></webaudio-knob>
+                                </td>
+                                <td>
+                                    <select id="osc3" onclick="setOsc3();">
+                                        <option>Sine</option>
+                                        <option>Square</option>
+                                        <option>Sawtooth</option>
+                                        <option>Triangle</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="oscillatorbank_img"><img src="img/oscillatorbank.png" />
+                    </div>
+                </div>
+                <div id="mixer">
+                    <div id="mixer_top">
+                        <div id="column1">
+                            <div id="hl_volume">Volume</div>
+                            <div id="osc1mix">
+                                <webaudio-knob id="knob_osc1mix" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="55" value="50"></webaudio-knob>
+                            </div>
+                            <div id="osc2mix">
+                                <webaudio-knob id="knob_osc2mix" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="55"></webaudio-knob>
+                            </div>
+                            <div id="osc3mix">
+                                <webaudio-knob id="knob_osc3mix" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="55"></webaudio-knob>
+                            </div>
+                        </div>
+                        <div id="column2">
+                            <div id="noisevolume">
+                                Noise Volume
+                                <webaudio-knob id="knob_noiseVolume" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="50"></webaudio-knob>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mixer_img"><img src="img/mixer.png" />
+                    </div>
+                </div>
+                <div id="filtermodwrapper">
+                    <div id="filter">
+                        <table width="250px" cellpadding="1px" cellspacing="0px">
+                            <tr align="center">
+                                <td colspan="3"><strong>Filter</strong>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td>Cutoff Frequency</td>
+                                <td>Emphasis</td>
+                                <td>Amount of Contour</td>
+                            </tr>
+                            <tr align="center">
+                                <td>
+                                    <webaudio-knob id="knob_cutoff" src="controls/img/webmoog_freq.png" sprites="30" min="20" max="20000" diameter="50" units="Hz"></webaudio-knob>
+                                </td>
+                                <td>
+                                    <webaudio-knob id="knob_emphasis" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="10" diameter="50"></webaudio-knob>
+                                </td>
+                                <td>
+                                    <webaudio-knob id="knob_contour" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="50" units="%"></webaudio-knob>
                                 </td>
                             </tr>
                             <tr align="center">
@@ -226,74 +190,176 @@
                             </tr>
                             <tr align="center">
                                 <td>
-                                    <webaudio-knob id="knob_attack" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50" units="ms"></webaudio-knob>
+                                    <webaudio-knob id="knob_fattack" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50"></webaudio-knob>
                                 </td>
                                 <td>
-                                    <webaudio-knob id="knob_decay" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50" units="ms"></webaudio-knob>
+                                    <webaudio-knob id="knob_fdecay" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50"></webaudio-knob>
                                 </td>
                                 <td>
-                                    <webaudio-knob id="knob_sustain" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="10" diameter="50"></webaudio-knob>
+                                    <webaudio-knob id="knob_fsustain" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="10" diameter="50"></webaudio-knob>
                                 </td>
-                            </tr>
-                            <tr>
                             </tr>
                         </table>
                     </div>
-                    <div id="img_mod"><img src="img/modifier.png" />
+                    <div id="mod">
+                        <div id="mod_top">
+                            <table width="250px">
+                                <tr align="center">
+                                    <td colspan="3"><strong>Loudness Countour</strong>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td>Attack Time</td>
+                                    <td>Decay Time</td>
+                                    <td>Sustain Level</td>
+                                </tr>
+                                <tr align="center">
+                                    <td>
+                                        <webaudio-knob id="knob_attack" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50" units="ms"></webaudio-knob>
+                                    </td>
+                                    <td>
+                                        <webaudio-knob id="knob_decay" src="controls/img/webmoog_envelope.png" sprites="30" min="0" max="2000" diameter="50" units="ms"></webaudio-knob>
+                                    </td>
+                                    <td>
+                                        <webaudio-knob id="knob_sustain" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="10" diameter="50"></webaudio-knob>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="img_mod"><img src="img/modifier.png" />
+                        </div>
+                    </div>
+                </div>
+                <div id="output">
+                    <div id="output_top">
+                        <div id="volume">
+                            <strong>Volume</strong>
+                            <webaudio-knob id="knob_volume" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="50" value="50">
+                        </div>
+                    </div>
+                    <div id="img_output"><img src="img/output.png" />
                     </div>
                 </div>
             </div>
-            <div id="output">
-                <div id="output_top">
-                    <div id="volume">
-                        <strong>Volume</strong>
-                        <webaudio-knob id="knob_volume" src="controls/img/webmoog_0_10.png" sprites="30" min="0" max="100" diameter="50" value="50">
-                    </div>
-                </div>
-                <div id="img_output"><img src="img/output.png" />
-                </div>
-            </div>
-            </div>
-
             <div id="keyboardwrapper">
                 <div id="keyboard"></div>
             </div>
-
-         
-        <div id="addcontent">
-         <div id="metronom">
-        <strong>Metronom</strong><br /> <br />
-        <a class="play" onclick="this.innerText = play();">Start Metronom</a><br />
-        <span id="showTempo">120</span>BPM <input id="tempo" type="range" min="30.0" max="160.0" step="1" value="120" style="height: 20px; width: 150px" onInput="tempo = event.target.value; document.getElementById('showTempo').innerText=tempo;">
+            <div id="addcontent">
+                <div id="metronom">
+                    <strong>Metronom</strong>
+                    <br />
+                    <br />
+                    <a class="play" onclick="this.innerText = play();">Start Metronom</a>
+                    <br />
+                    <span id="showTempo">120</span>BPM
+                    <input id="tempo" type="range" min="30.0" max="160.0" step="1" value="120" style="height: 20px; width: 150px" onInput="tempo = event.target.value; document.getElementById('showTempo').innerText=tempo;">
+                </div>
+                <div id="recording">
+                    <strong>Recording</strong>
+                    <br />
+                    <br />
+                    <button id="recorderbutton" onclick="gorecord();">Start Recording</button>
+                    <br />
+                    <ul id="recordingslist"></ul>
+                </div>
+                <div id="midi">
+                    <strong>Web Midi</strong>
+                    <div id="midistatus">
+                    </div>
+                    <a href="#" onclick="Popup.show('simplediv');return false;">Learn more about Web Midi</a>
+                </div>
+            </div>
         </div>
-        <div id="recording">
-         <strong>Recording</strong><br /> <br />
-         <button id="recorderbutton" onclick="gorecord();">Start Recording</button>
-                <br />
-                <ul id="recordingslist"></ul>
-         </div>
-         <div id="midi">
-        <strong>Web Midi</strong>
-        <div id="midistatus">
-        </div>
-         <a href="#" onclick="Popup.show('simplediv');return false;">Learn more about Web Midi</a>
-         </div>
-    
-         </div>
-        
-    </div>
     </div>
     <script src="js/AudioContextMonkeyPatch.js"></script>
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/keyboard.js"></script>
     <script src="js/raphael-min.js"></script>
-    <script src="js/WebMIDIAPI.js"></script>
-    <script src="js/midi.js"></script>
+    <script src='http://cwilso.github.com/WebMIDIAPIShim/WebMIDIAPI.js'></script>
     <script src="js/synth.js"></script>
     <script src="js/recorder.js"></script>
     <script src="js/metronome.js"></script>
-     <script src="js/controls.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/midi.js"></script>
+    <script>
+    socket.on('Osc1Mix', function(msg) {
+        knob_osc1mix.setValue(msg, false);
+        for (var i = 0; i < 255; i++) {
+            if (voices[i] != null) {
+                voices[i].updateOsc1Mix(value);
+            }
+        }
+    });
 
+    socket.on('Osc2Mix', function(msg) {
+        knob_osc2mix.setValue(msg, false);
+    });
+
+    socket.on('Osc3Mix', function(msg) {
+        knob_osc3mix.setValue(msg, false);
+    });
+    socket.on('Osc1Detune', function(msg) {
+        knob_osc1detune.setValue(msg, false);
+    });
+    socket.on('Osc2Detune', function(msg) {
+        knob_osc2detune.setValue(msg, false);
+    });
+    socket.on('Osc3Detune', function(msg) {
+        knob_osc3detune.setValue(msg, false);
+    });
+    socket.on('NoiseVolume', function(msg) {
+        knob_noiseVolume.setValue(msg, false);
+    });
+    socket.on('FCutoff', function(msg) {
+        knob_cutoff.setValue(msg, false);
+    });
+    socket.on('Emphasis', function(msg) {
+        knob_emphasis.setValue(msg, false);
+    });
+    socket.on('Contour', function(msg) {
+        knob_contour.setValue(msg, false);
+    });
+    socket.on('FAttack', function(msg) {
+        knob_fattack.setValue(msg, false);
+    });
+    socket.on('Fdecay', function(msg) {
+        knob_fdecay.setValue(msg, false);
+    });
+    socket.on('FSustain', function(msg) {
+        knob_fsustain.setValue(msg, false);
+    });
+    socket.on('Attack', function(msg) {
+        knob_attack.setValue(msg, false);
+    });
+    socket.on('Sustain', function(msg) {
+        knob_sustain.setValue(msg, false);
+    });
+        socket.on('Decay', function(msg) {
+        knob_decay.setValue(msg, false);
+    });
+            socket.on('Volume', function(msg) {
+        knob_volume.setValue(msg, false);
+    });
+
+
+
+    socket.on('noteon', function(msg) {
+
+
+        voices[msg[0]] = new Voice(msg[1], "0", "onscreen");
+
+    });
+
+    socket.on('noteoff', function(msg) {
+
+
+        voices[msg].noteOff();
+        voices[msg] = null;
+
+    });
+    </script>
 </body>
 
 </html>

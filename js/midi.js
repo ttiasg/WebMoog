@@ -1,12 +1,14 @@
+
  var midiAccess=null;
 
-if (navigator.requestMIDIAccess) {
-	navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );
-    }
-      else {
- }
+  window.addEventListener('load', function() {
+     
+      if (navigator.requestMIDIAccess)
+        navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );
+      
+    });
 
-
+/*
   function onMIDIInit(midi) {
       midiAccess = midi;
 
@@ -24,6 +26,32 @@ if (navigator.requestMIDIAccess) {
           inputs[i].onmidimessage = MIDIMessageEventHandler;
       }
     }
+*/
+
+function onMIDIInit(midi) {
+      midiAccess = midi;
+
+      if ((typeof(midiAccess.inputs) == "function")) {  //Old Skool MIDI inputs() code
+        var inputs=midiAccess.inputs();
+        if (inputs.length === 0)
+          alert("No MIDI input devices present.  You're gonna have a bad time.")
+        else { // Hook the message handler for all MIDI inputs
+          for (var i=0;i<inputs.length;i++)
+            inputs[i].onmidimessage = MIDIMessageEventHandler;
+        }
+      } else {  // new MIDIMap implementation
+        var haveAtLeastOneDevice=false;
+          var inputs=midiAccess.inputs.values();
+          for ( var input = inputs.next(); input && !input.done; input = inputs.next()) {
+            input.value.onmidimessage = MIDIMessageEventHandler;
+            haveAtLeastOneDevice = true;
+          }
+          if (!haveAtLeastOneDevice)
+          //alert("No MIDI input devices present.  You're gonna have a bad time.");
+      }
+    }
+
+
 
         function onMIDIReject(err) {
 
@@ -47,3 +75,6 @@ if (navigator.requestMIDIAccess) {
           return;
       }
     }
+
+
+
